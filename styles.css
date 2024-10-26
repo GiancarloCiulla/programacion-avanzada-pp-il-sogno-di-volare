@@ -1,3 +1,16 @@
 body {
-    background-color: ghostwhite;
+    background-color: #4B5320;
 }
+
+img{
+    width: 200px;
+}
+
+button{
+    padding: 4px 10px;
+    margin: 4px;
+    color: white;
+    background-color: #A4895C;
+    border: none;
+    border-radius: 2px;
+} 

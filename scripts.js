@@ -1,3 +1,11 @@
+const civilAircrafts = [
+    'assets/avion-civil-1.jpg',
+    'assets/avion-civil-2.jpg',
+    'assets/avion-civil-3.jpg',
+    'assets/avion-civil-4.jpg',
+    'assets/avion-civil-5.jpg'
+];
+
 const militaryAircrafts = [
     'assets/avion-militar-1.jpg',
     'assets/avion-militar-2.jpg',
@@ -24,29 +32,31 @@ const militaryHelicopter = [
 
 class Gallery {
     constructor(civilImages, militaryImages) {
-        this.civilImages = civilImages;
-        this.militaryImages = militaryImages;
+        this.civilImages = civilImages,
+        this.militaryImages = militaryImages
     }
-    
+
     getRandomCivil() {
-        return this.civilImages[Math.floor(Math.random() * 4)];
+        let iRandom = Math.floor(Math.random() * this.civilImages.length);
+        return this.civilImages[iRandom];
     }
-    
+
     getRandomMilitary() {
-        return this.militaryImages[Math.floor(Math.random() * 4)];
+        let iRandom = Math.floor(Math.random() * this.militaryImages.length);
+        return this.militaryImages[iRandom];
     }
-    
+
     getAll() {
         return [...this.civilImages, ...this.militaryImages];
     }
 }
 
 class Painter {
-    constructor(gallery) {
+    constructor() {
         this.createGallery();
     }
 
-    createGallery(gallery) {
+    createGallery() {
         this.gallery = document.createElement("section");
         document.body.appendChild(this.gallery);
     }
@@ -54,21 +64,20 @@ class Painter {
     createImageTag(imageUrl) {
         return `
         <picture>
-            <img src="${imageUrl}" />
-        </picture>
-        `
+            <img src=${imageUrl} />
+        </picture>`
     }
 
     paintSingleImage(imageUrl) {
-        
-        this.gallery.innerHTML += this.createImageTag(imageUrl);
+        const imageTag = this.createImageTag(imageUrl);
+        this.gallery.innerHTML += imageTag;
     }
 
     paintMultipleImages(arrayOfImages) {
-        for (let i = 0; i < arrayOfImages.length; i++) {
-            this.gallery.innerHTML += this.createImageTag(arrayOfImages[i]);
-            
-        }
+        arrayOfImages.forEach(imageUrl => {
+            const imageTag = this.createImageTag(imageUrl);
+            this.gallery.innerHTML += imageTag;
+        });
     }
 }
 
